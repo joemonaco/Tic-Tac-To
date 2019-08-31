@@ -25,10 +25,10 @@ function validateGame() {
   } else {
     usersName = nameInput.value;
     if (oChecked.checked) {
-      userLetter = "x";
+      userLetter = "o";
       startGame();
     } else if (xChecked.checked) {
-      userLetter = "o";
+      userLetter = "x";
       startGame();
     } else {
       alert("Please Choose X or O");
@@ -43,5 +43,5 @@ function startGame() {
   var newGameArea = document.getElementById("new-game");
   newGameArea.classList.add("hidden");
 
-  heading.innerHTML = usersName + "'s turn!";
+  heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
 }
