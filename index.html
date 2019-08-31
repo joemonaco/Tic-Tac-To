@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="heading" id="heading">Tic-Tac-Toe</h1>
+
+      <div class="new-game" id="new-game">
+        <input
+          class="name-input"
+          id="name"
+          type="text"
+          placeholder="Enter your name"
+        />
+        <div class="x-or-o">
+          <input type="checkbox" id="x-check" onclick="boxChecked('x')" />
+          <label for="x-check"><img src="images/X.png"/></label>
+          <input type="checkbox" id="o-check" onclick="boxChecked('o')" />
+          <label for="o-check"><img src="images/O.png"/></label>
+        </div>
+        <button class="start-game" onclick="validateGame()">New Game!</button>
+      </div>
+
+      <div class="game-area hidden" id="game-area">
+        <div class="board">
+          <div class="row1">
+            <div class="c1" id="r1c1"></div>
+            <div class="c2" id="r1c2"></div>
+            <div class="c3" id="r1c3"></div>
+          </div>
+          <div class="row2">
+            <div class="c1" id="r2c1"></div>
+            <div class="c2" id="r2c2"></div>
+            <div class="c3" id="r2c3"></div>
+          </div>
+          <div class="row3">
+            <div class="c1" id="r3c1"></div>
+            <div class="c2" id="r3c2"></div>
+            <div class="c3" id="r3c3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>

@@ -1,0 +1,124 @@
+html {
+  background: linear-gradient(to bottom, black, #537274) no-repeat center center
+    fixed;
+  font-family: "Permanent Marker", cursive;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heading {
+  text-align: center;
+  font-size: 6rem;
+  color: white;
+}
+
+.new-game {
+  display: contents;
+}
+
+.name-input {
+  width: 30vw;
+  height: 5vh;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.start-game {
+  font-family: "Permanent Marker", cursive;
+  width: 20vw;
+  height: 5vh;
+  border-radius: 10px;
+  font-size: 1.8rem;
+}
+
+.start-game:hover {
+  cursor: pointer;
+  background-color: #537274;
+  transition: background-color 1s ease;
+  border: 1px black solid;
+  color: white;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label {
+  padding: 10px;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+label::before {
+  /* content: " "; */
+  border-radius: 50%;
+  position: absolute;
+  /* top: -5px; */
+  margin-left: 70px;
+  margin-top: 20px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 250px;
+  width: 250px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label::before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  /* box-shadow: 0 0 5px #333; */
+  z-index: -1;
+}
+
+.hidden {
+  display: none;
+}
+
+.score {
+  color: white;
+  font-size: 3rem;
+}
+
+.board {
+  display: inline-block;
+}
+
+.row1,
+.row2,
+.row3 {
+  display: flex;
+}
+
+.c1,
+.c2,
+.c3 {
+  width: 200px;
+  height: 200px;
+  border: 1px solid white;
+}
