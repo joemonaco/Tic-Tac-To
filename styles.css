@@ -115,6 +115,7 @@ label img {
 
 .hidden {
   display: none !important;
+  visibility: hidden;
 }
 
 .score {
