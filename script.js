@@ -45,3 +45,26 @@ function startGame() {
 
   heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
 }
+
+var turn = 0;
+
+function boxClicked(id) {
+  var box = document.getElementById(id);
+  if (turn === 0) {
+    console.log("turn 0");
+    if (!box.classList.contains("filled")) {
+      box.classList.add("o" + "-added");
+      box.classList.add("filled");
+      turn = 1;
+    }
+  } else {
+    console.log("turn 1");
+    if (!box.classList.contains("filled")) {
+      box.classList.add("filled");
+      box.classList.add("x" + "-added");
+      turn = 0;
+    }
+  }
+}
+
+function aiTurn() {}

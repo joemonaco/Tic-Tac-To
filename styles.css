@@ -96,6 +96,19 @@ label img {
   z-index: -1;
 }
 
+.x-added {
+  background: url("/images/X.png") no-repeat center !important;
+  background-size: cover;
+  background-size: 200px 200px !important;
+  /* z-index: 111; */
+}
+
+.o-added {
+  background: url("/images/O.png") no-repeat center !important;
+  background-size: 200px 200px !important;
+  /* z-index: 111; */
+}
+
 .hidden {
   display: none;
 }
