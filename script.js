@@ -184,7 +184,7 @@ function endGame() {
       }
     }
     heading.innerHTML = "Tic-Tac-Toe";
-
+    isWinner = false;
     compBoxes = [];
     userBoxes = [];
   }, 1000);

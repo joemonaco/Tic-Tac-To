@@ -95,7 +95,7 @@ label img {
 }
 
 .no-letter {
-  background: none !important;
+  background: none;
 }
 
 .x-added {
