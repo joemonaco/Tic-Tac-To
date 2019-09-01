@@ -7,6 +7,8 @@ var userLetter = null;
 var compLetter = null;
 var usersName = "";
 
+var isWinner = false;
+
 function boxChecked(letter) {
   if (letter === "x") {
     if (oChecked.checked) {
@@ -59,47 +61,50 @@ var userBoxes = [];
 var compBoxes = [];
 
 function boxClicked(id, row, col) {
-  var box = document.getElementById(id);
-  if (turn === 0) {
-    if (!box.classList.contains("filled")) {
-      box.classList.add(userLetter + "-added");
-      box.classList.add("filled");
+  if (!isWinner) {
+    var box = document.getElementById(id);
+    if (turn === 0) {
+      if (boxes.includes(id)) {
+        box.classList.add(userLetter + "-added");
 
-      let index = boxes.indexOf(id);
-      userBoxes.push(boxes[index]);
+        let index = boxes.indexOf(id);
+        userBoxes.push(boxes[index]);
 
-      placed[row][col] = userLetter;
+        placed[row][col] = userLetter;
 
-      boxes.splice(index, 1);
+        boxes.splice(index, 1);
 
-      if (!checkWinner()) {
-        turn = 1;
-        heading.innerHTML = "AI Turn";
-        aiTurn();
-      } else {
-        endGame();
+        if (!checkWinner()) {
+          turn = 1;
+          heading.innerHTML = "AI Turn";
+          aiTurn();
+        } else {
+          endGame();
+        }
       }
     }
   }
 }
 
 function aiTurn() {
-  setTimeout(function() {
-    if (boxes.length != 0) {
-      let randomIndex = Math.floor(Math.random() * (boxes.length - 1));
-      var box = document.getElementById(boxes[randomIndex]);
-      box.classList.add("filled");
-      box.classList.add(compLetter + "-added");
-      compBoxes.push(boxes[randomIndex]);
-      boxes.splice(randomIndex, 1);
-      if (!checkWinner()) {
-        turn = 0;
-        heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
-      } else {
-        endGame();
+  if (!isWinner) {
+    setTimeout(function() {
+      if (boxes.length != 0) {
+        let randomIndex = Math.floor(Math.random() * (boxes.length - 1));
+        var box = document.getElementById(boxes[randomIndex]);
+
+        box.classList.add(compLetter + "-added");
+        compBoxes.push(boxes[randomIndex]);
+        boxes.splice(randomIndex, 1);
+        if (!checkWinner()) {
+          turn = 0;
+          heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
+        } else {
+          endGame();
+        }
       }
-    }
-  }, 500);
+    }, 500);
+  }
 }
 
 function checkBoxes() {
@@ -143,13 +148,15 @@ function checkWinner() {
 
   if (winner === userLetter) {
     heading.innerHTML = usersName + " Has Won!";
-
+    isWinner = true;
     return true;
   } else if (winner === compLetter) {
     heading.innerHTML = "AI Has Won!";
+    isWinner = true;
     return true;
   } else if (winner === "t") {
     heading.innerHTML == "TIE GAME!";
+    isWinner = true;
     return true;
   }
   return false;
@@ -171,11 +178,9 @@ function endGame() {
       console.log(boxes[i]);
       if (box.classList.contains("x-added")) {
         box.classList.remove("x-added");
-        box.classList.remove("filled");
       }
       if (box.classList.contains("o-added")) {
         box.classList.remove("o-added");
-        box.classList.remove("filled");
       }
     }
     heading.innerHTML = "Tic-Tac-Toe";
