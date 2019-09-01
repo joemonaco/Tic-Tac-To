@@ -94,6 +94,10 @@ label img {
   z-index: -1;
 }
 
+.no-letter {
+  background: none !important;
+}
+
 .x-added {
   background: url("/images/X.png") no-repeat center !important;
   background-size: cover;
