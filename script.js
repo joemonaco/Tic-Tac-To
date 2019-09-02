@@ -1,6 +1,8 @@
 var xChecked = document.getElementById("x-check");
 var oChecked = document.getElementById("o-check");
 var heading = document.getElementById("heading");
+var gameArea = document.getElementById("game-area");
+var newGameArea = document.getElementById("new-game");
 
 //Default for user is x
 var userLetter = null;
@@ -8,6 +10,12 @@ var compLetter = null;
 var usersName = "";
 
 var isWinner = false;
+
+//Array of the boxes for checking if theyve been clicked
+var boxes = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var placed = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]];
+var turn = 0;
+var aiSelection = null;
 
 function boxChecked(letter) {
   if (letter === "x") {
@@ -42,45 +50,38 @@ function validateGame() {
 }
 
 function startGame() {
-  var gameArea = document.getElementById("game-area");
   gameArea.classList.remove("hidden");
-
-  var newGameArea = document.getElementById("new-game");
   newGameArea.classList.add("hidden");
-
   heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
 }
 
-var boxes = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var placed = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]];
-
-//Turn 0 is Players turn
-var turn = 0;
-
-var userBoxes = [];
-var compBoxes = [];
-
 function boxClicked(id, row, col) {
   if (!isWinner) {
-    var box = document.getElementById(id);
-    if (turn === 0) {
-      if (boxes.includes(id)) {
+    if (boxes.includes(id)) {
+      if (turn == 0) {
+        var box = document.getElementById(id);
+
         box.classList.add(userLetter + "-added");
-
         let index = boxes.indexOf(id);
-        userBoxes.push(boxes[index]);
-
         placed[row][col] = userLetter;
-
         boxes.splice(index, 1);
+      }
+      if (turn == 1) {
+        placed[row][col] = compLetter;
+        aiSelection.classList.add(compLetter + "-added");
+      }
 
-        if (!checkWinner()) {
+      if (!checkWinner()) {
+        if (turn == 0) {
           turn = 1;
           heading.innerHTML = "AI Turn";
           aiTurn();
         } else {
-          endGame();
+          turn = 0;
+          heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
         }
+      } else {
+        endGame();
       }
     }
   }
@@ -91,17 +92,9 @@ function aiTurn() {
     setTimeout(function() {
       if (boxes.length != 0) {
         let randomIndex = Math.floor(Math.random() * (boxes.length - 1));
-        var box = document.getElementById(boxes[randomIndex]);
-
-        box.classList.add(compLetter + "-added");
-        compBoxes.push(boxes[randomIndex]);
+        aiSelection = document.getElementById(boxes[randomIndex]);
+        aiSelection.click();
         boxes.splice(randomIndex, 1);
-        if (!checkWinner()) {
-          turn = 0;
-          heading.innerHTML = usersName + "'s turn!(" + userLetter + ")";
-        } else {
-          endGame();
-        }
       }
     }, 500);
   }
@@ -164,10 +157,7 @@ function checkWinner() {
 
 function endGame() {
   setTimeout(function() {
-    var gameArea = document.getElementById("game-area");
     gameArea.classList.add("hidden");
-
-    var newGameArea = document.getElementById("new-game");
     newGameArea.classList.remove("hidden");
 
     boxes = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -185,7 +175,8 @@ function endGame() {
     }
     heading.innerHTML = "Tic-Tac-Toe";
     isWinner = false;
-    compBoxes = [];
-    userBoxes = [];
-  }, 1000);
+    userLetter = null;
+    compLetter = null;
+    turn = 0;
+  }, 1500);
 }
