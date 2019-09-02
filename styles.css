@@ -1,4 +1,4 @@
-html {
+body {
   background: linear-gradient(to bottom, black, #537274) no-repeat center center
     fixed;
   font-family: "Permanent Marker", cursive;
@@ -83,7 +83,7 @@ label img {
 }
 
 :checked + label::before {
-  content: "✓";
+  content: "✔︎";
   background-color: grey;
   transform: scale(1);
 }

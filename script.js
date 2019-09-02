@@ -13,6 +13,7 @@ var isWinner = false;
 
 //Array of the boxes for checking if theyve been clicked
 var boxes = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
 var placed = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]];
 var turn = 0;
 var aiSelection = null;
