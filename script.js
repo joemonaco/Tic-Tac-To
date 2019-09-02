@@ -125,7 +125,7 @@ function checkBoxes() {
   if (placed[0][0] == placed[1][1] && placed[1][1] == placed[2][2]) {
     return placed[0][0];
   }
-  if (placed[0][2] == placed[1][1] && placed[1][1] == placed[0][2]) {
+  if (placed[0][2] == placed[1][1] && placed[1][1] == placed[2][0]) {
     return placed[0][2];
   }
 
