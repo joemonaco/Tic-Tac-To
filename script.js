@@ -29,6 +29,7 @@ function boxChecked(letter) {
   }
 }
 
+//Making sure that
 function validateGame() {
   var nameInput = document.getElementById("name");
   if (nameInput.value == "") {
@@ -130,7 +131,7 @@ function checkBoxes() {
   }
 
   if (boxes.length == 0) {
-    return "t";
+    return "tie";
   } else {
     return "not yet";
   }
@@ -147,8 +148,8 @@ function checkWinner() {
     heading.innerHTML = "AI Has Won!";
     isWinner = true;
     return true;
-  } else if (winner === "t") {
-    heading.innerHTML == "TIE GAME!";
+  } else if (winner === "tie") {
+    heading.innerHTML = "TIE GAME!";
     isWinner = true;
     return true;
   }

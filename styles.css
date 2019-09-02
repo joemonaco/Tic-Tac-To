@@ -14,7 +14,7 @@ html {
 
 .heading {
   text-align: center;
-  font-size: 5rem;
+  font-size: 6rem;
   color: white;
 }
 
@@ -221,7 +221,7 @@ label img {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .heading {
-    font-size: 4rem;
+    font-size: 6rem;
   }
 
   .c1,
